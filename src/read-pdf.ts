@@ -1,14 +1,13 @@
-import {join} from 'path';
+import {join} from 'node:path';
 import {getDocument} from 'pdfjs-dist';
 import type {
-    BinaryData,
     DocumentInitParameters,
     PDFPageProxy,
     TextItem,
 } from 'pdfjs-dist/types/src/display/api';
-import {RequireExactlyOne} from 'type-fest';
+import type {RequireExactlyOne} from 'type-fest';
 
-export type {BinaryData, DocumentInitParameters} from 'pdfjs-dist/types/src/display/api';
+export type {DocumentInitParameters} from 'pdfjs-dist/types/src/display/api';
 
 /** A single page within a PDF file. */
 export type PdfPage = {
@@ -55,7 +54,7 @@ export type ReadPdfTextParams = PartialWithUndefined<{
         /** URL to the PDF. */
         url: string;
         /** PDF file data that has already been read from a PDF file. */
-        data: BinaryData;
+        data: DocumentInitParameters['data'];
         /** All other options that the Mozilla `pdfjs-dist` package supports. */
         allOptions: DocumentInitParameters;
     }>;
@@ -97,6 +96,9 @@ export async function readPdfPages({
         const page = await document.getPage(i + 1);
         pages.push(await parsePage(page));
     }
+
+    /** This is populated by the pdfjs-dist package. We're deleting it here to prevent memory leaks. */
+    delete (globalThis as any).pdfjsWorker;
 
     return pages;
 }

@@ -1,4 +1,5 @@
-import {dirname, join, resolve} from 'path';
+import {dirname, join, resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 
 /**
  * Path to the repo's root. Does not use the package name because the source code could
@@ -6,7 +7,7 @@ import {dirname, join, resolve} from 'path';
  * be run directly without transpiling it into JS) and "dist" is used for the transpiled JS output
  * directory.
  */
-const repoRootDir = dirname(__dirname);
+const repoRootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 
 export const sampleFilesDir = join(repoRootDir, 'test-files');
-export const nodeModulesDir = resolve(__dirname, '..', 'node_modules', 'pdfjs-dist');
+export const nodeModulesDir = resolve(repoRootDir, 'node_modules', 'pdfjs-dist');

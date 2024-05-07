@@ -1,7 +1,7 @@
 import {assert} from 'chai';
-import {existsSync} from 'fs';
-import {join} from 'path';
-import {ReadonlyDeep} from 'type-fest';
+import {existsSync} from 'node:fs';
+import {join} from 'node:path';
+import type {ReadonlyDeep} from 'type-fest';
 import {PdfProgressData, readPdfPages, readPdfText} from './read-pdf';
 import {nodeModulesDir, sampleFilesDir} from './repo-paths.test-helper';
 
