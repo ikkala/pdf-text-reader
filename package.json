@@ -30,7 +30,7 @@
         "docs": "virmator docs",
         "format": "prettier --color --cache --cache-strategy content \"./**/*.+(cjs|css|graphql|html|js|json|jsx|less|md|mjs|scss|toml|ts|tsx|yaml|yml)\"",
         "publish": "virmator publish \"npm run compile && npm run test:all\"",
-        "test": "mocha --colors --config 'configs/mocha.config.cjs'",
+        "test": "test-as-package mocha --colors --config 'configs/mocha.config.cjs'",
         "test:all": "concurrently --colors --kill-others-on-fail -c auto --names types,tests,spelling,format,docs,deps \"npm run test:types\" \"npm run test\" \"npm run test:spelling\" \"npm run test:format\" \"npm run test:docs\" \"npm run test:deps\"",
         "test:deps": "virmator deps check",
         "test:docs": "virmator docs check",
@@ -42,6 +42,7 @@
         "pdfjs-dist": "4.2.67"
     },
     "devDependencies": {
+        "@augment-vir/node-js": "^28.0.0",
         "@electrovir/nyc": "^15.1.0-fix0",
         "@istanbuljs/nyc-config-typescript": "^1.0.2",
         "@types/chai": "^4.3.16",
@@ -64,6 +65,7 @@
         "prettier-plugin-packagejson": "^2.5.0",
         "prettier-plugin-sort-json": "^4.0.0",
         "prettier-plugin-toml": "^2.0.1",
+        "test-as-package": "^1.0.0",
         "tsx": "^4.9.3",
         "type-fest": "^4.18.2",
         "typedoc": "^0.25.13",
