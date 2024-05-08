@@ -1,6 +1,6 @@
 {
     "name": "pdf-text-reader",
-    "version": "5.0.1",
+    "version": "5.1.0",
     "description": "Dead simple pdf text reader",
     "keywords": [
         "pdf",
@@ -65,6 +65,7 @@
         "prettier-plugin-packagejson": "^2.5.0",
         "prettier-plugin-sort-json": "^4.0.0",
         "prettier-plugin-toml": "^2.0.1",
+        "run-time-assertions": "^1.2.0",
         "test-as-package": "^1.0.0",
         "tsx": "^4.9.3",
         "type-fest": "^4.18.2",

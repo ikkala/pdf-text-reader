@@ -1,8 +1,10 @@
 import {assert} from 'chai';
 import {existsSync} from 'node:fs';
 import {join} from 'node:path';
+import type {TypedArray} from 'pdfjs-dist/types/src/display/api.js';
+import {assertTypeOf} from 'run-time-assertions';
 import type {ReadonlyDeep} from 'type-fest';
-import {PdfProgressData, readPdfPages, readPdfText} from './read-pdf.js';
+import {PdfProgressData, ReadPdfTextParams, readPdfPages, readPdfText} from './read-pdf.js';
 import {nodeModulesDir, sampleFilesDir} from './repo-paths.test-helper.js';
 
 type PdfTestFile = {
@@ -112,6 +114,9 @@ describe(readPdfPages.name, () => {
             progressCallback(progressData) {
                 allProgressData.push(progressData);
             },
+            options: {
+                isEvalSupported: false,
+            },
         });
 
         assert.isAbove(allProgressData.length, 0, 'got no progress data');
@@ -140,5 +145,15 @@ describe(readPdfText.name, () => {
                 `file does not have expected content: '${filePath}'`,
             );
         });
+    });
+});
+
+describe('ReadPdfTextParams', () => {
+    it('matches expected types', () => {
+        assertTypeOf<Required<ReadPdfTextParams>['data']>().toEqualTypeOf<
+            string | number[] | ArrayBuffer | TypedArray
+        >();
+        assertTypeOf<Required<ReadPdfTextParams>['url']>().toEqualTypeOf<string | URL>();
+        assertTypeOf<Required<ReadPdfTextParams>['filePath']>().toEqualTypeOf<string | URL>();
     });
 });
