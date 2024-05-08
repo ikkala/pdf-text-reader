@@ -4,10 +4,10 @@ import type {
     DocumentInitParameters,
     PDFPageProxy,
     TextItem,
-} from 'pdfjs-dist/types/src/display/api';
+} from 'pdfjs-dist/types/src/display/api.js';
 import type {RequireExactlyOne} from 'type-fest';
 
-export type {DocumentInitParameters} from 'pdfjs-dist/types/src/display/api';
+export type {DocumentInitParameters} from 'pdfjs-dist/types/src/display/api.js';
 
 /** A single page within a PDF file. */
 export type PdfPage = {

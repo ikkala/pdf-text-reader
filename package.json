@@ -1,6 +1,6 @@
 {
     "name": "pdf-text-reader",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "description": "Dead simple pdf text reader",
     "keywords": [
         "pdf",
@@ -30,7 +30,7 @@
         "docs": "virmator docs",
         "format": "prettier --color --cache --cache-strategy content \"./**/*.+(cjs|css|graphql|html|js|json|jsx|less|md|mjs|scss|toml|ts|tsx|yaml|yml)\"",
         "publish": "virmator publish \"npm run compile && npm run test:all\"",
-        "test": "test-as-package mocha --colors --config 'configs/mocha.config.cjs'",
+        "test": "npm run compile && test-as-package mocha --colors --config 'configs/mocha.config.cjs'",
         "test:all": "concurrently --colors --kill-others-on-fail -c auto --names types,tests,spelling,format,docs,deps \"npm run test:types\" \"npm run test\" \"npm run test:spelling\" \"npm run test:format\" \"npm run test:docs\" \"npm run test:deps\"",
         "test:deps": "virmator deps check",
         "test:docs": "virmator docs check",

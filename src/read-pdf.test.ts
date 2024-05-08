@@ -2,8 +2,8 @@ import {assert} from 'chai';
 import {existsSync} from 'node:fs';
 import {join} from 'node:path';
 import type {ReadonlyDeep} from 'type-fest';
-import {PdfProgressData, readPdfPages, readPdfText} from './read-pdf';
-import {nodeModulesDir, sampleFilesDir} from './repo-paths.test-helper';
+import {PdfProgressData, readPdfPages, readPdfText} from './read-pdf.js';
+import {nodeModulesDir, sampleFilesDir} from './repo-paths.test-helper.js';
 
 type PdfTestFile = {
     filePath: string;
