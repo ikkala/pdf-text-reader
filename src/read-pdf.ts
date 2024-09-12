@@ -135,7 +135,7 @@ export async function parsePage(pdfPage: PDFPageProxy): Promise<PdfPage> {
  *
  * @param pdfItems An array of TextItem items.
  */
-export function parsePageItems(pdfItems: TextItem[]): PdfPage {
+export function parsePageItems(pdfItems: TextItem[], addSpace = false): PdfPage {
     const lineData: {[y: number]: TextItem[]} = {};
 
     for (let i = 0; i < pdfItems.length; i++) {
@@ -211,7 +211,7 @@ export function parsePageItems(pdfItems: TextItem[]): PdfPage {
                 }
                 line += Array(spaceCount).fill('').join(' ');
             }
-            line += item.str;
+            line += (addSpace ? ' ' : '') + item.str;
         }
         lines.push(line);
     }
